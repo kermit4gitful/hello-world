@@ -1,7 +1,7 @@
 ﻿Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-$form = New-Object “System.Windows.Forms.Form”;
+ $form = New-Object “System.Windows.Forms.Form”;
  $form.Width = 500;
  $form.Height = 300;
  $form.Text = "Lazy Geo Lookup - by Chad Monterichard";
@@ -22,7 +22,7 @@ $form = New-Object “System.Windows.Forms.Form”;
  $textBox1.width = 200;
 
 #############Define default values for the input boxes
- $defaultValue = “”
+ $defaultValue = ""
  $textBox1.Text = $defaultValue;
 
 #############define button
@@ -32,11 +32,20 @@ $form = New-Object “System.Windows.Forms.Form”;
  $button.Text = “Enter”;
 
 ############# This is when you have to close the form after getting values
- $eventHandler = [System.EventHandler]{
- $textBox1.Text;
- $form.Close();};
+# $eventHandler = [System.EventHandler]{
+# $textBox1.Text;
+# $form.Close();};
 
-$button.Add_Click($eventHandler) ;
+ function RunCurl { 
+ $ip = $textBox1.Text;
+ $results = Invoke-WebRequest "http://ipinfo.io/$ip";
+ Write-Host $results
+ $results = $null;
+ $ip = $null;
+ # $form.Close();
+ }
+ 
+$button.Add_Click({RunCurl}) ;
 
 #############Add controls to all the above objects defined
  $form.Controls.Add($button);
@@ -45,4 +54,5 @@ $button.Add_Click($eventHandler) ;
  $ret = $form.ShowDialog();
 
 #################return values
+$ip = $null;
 $textBox1.Text
