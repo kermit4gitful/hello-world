@@ -4,7 +4,7 @@ Add-Type -AssemblyName System.Drawing
  $form = New-Object “System.Windows.Forms.Form”;
  $form.Width = 500;
  $form.Height = 300;
- $form.Text = "Lazy Geo Lookup - by Chad Monterichard";
+ $form.Text = "Lazy Geo Lookup - by C*** M***********";
  $form.BackColor = "#ffffff"
 
 ############Description

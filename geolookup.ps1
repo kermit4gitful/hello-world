@@ -5,9 +5,10 @@ Add-Type -AssemblyName System.Drawing
 
 # Create a new form
 $LocalCurlForm                    = New-Object system.Windows.Forms.Form
+
 # Define the size, title and background color
 $LocalCurlForm.ClientSize         = '500,300'
-$LocalCurlForm.text               = "Lazy Geo Lookup - by Chad Monterichard"
+$LocalCurlForm.text               = "Lazy Geo Lookup - by C*** M***********"
 $LocalCurlForm.BackColor          = "#ffffff"
 # Display the form
 #[void]$LocalCurlForm.ShowDialog()

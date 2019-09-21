@@ -52,7 +52,7 @@ $textBox3 = New-Object “System.Windows.Forms.TextBox”;
 
 #############Define default values for the input boxes
  $defaultValue = “”
-$textBox1.Text = $defaultValue;
+ $textBox1.Text = $defaultValue;
  $textBox2.Text = $defaultValue;
  $textBox3.Text = $defaultValue;
 
