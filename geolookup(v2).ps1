@@ -2,7 +2,7 @@
 Add-Type -AssemblyName System.Drawing
 
  $form = New-Object “System.Windows.Forms.Form”;
- $form.Width = 380;
+ $form.Width = 410;
  $form.Height = 330;
  $form.Text = "Lazy Geo Lookup - by Chad Monterichard";
  $form.TopMost = $true;
@@ -39,13 +39,15 @@ Add-Type -AssemblyName System.Drawing
  $textBox2 = New-Object System.Windows.Forms.TextBox;
  $textBox2.Multiline = $true;
  $textBox2.AcceptsReturn = $true;
- $textBox2.Width = 320;
+ $textBox2.Width = 350;
  $textBox2.Height = 150;
  $textBox2.Location = New-Object System.Drawing.Point(20,120);
 
  function RunCurl { 
  $ip = $textBox1.Text;
  $results = (Invoke-RestMethod http://ipinfo.io/$ip | Out-String).Trim();
+ # $results = (Invoke-RestMethod http://ipinfo.io/$ip | Out-String).Trim();
+ # $results = ((Invoke-RestMethod http://ipinfo.io/$ip | Out-String) -replace '[postal]','').Trim();
  # $results = ((Invoke-RestMethod http://ipinfo.io/$ip | Out-String) -replace "\s+:","");
  # $results = Invoke-RestMethod http://ipinfo.io/$ip; 
  # $textBox2.AppendText("$results\r\n");
