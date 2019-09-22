@@ -2,10 +2,13 @@
 Add-Type -AssemblyName System.Drawing
 
  $form = New-Object “System.Windows.Forms.Form”;
- $form.Width = 500;
- $form.Height = 300;
+ $form.Width = 380;
+ $form.Height = 330;
  $form.Text = "Lazy Geo Lookup - by Chad Monterichard";
  $form.TopMost = $true;
+ $form.MaximizeBox = $false;
+ $form.MaximumSize = $form.size;
+ $form.MinimumSize = $form.size;
  # $form.BackColor = "#ffffff"
 
 ############Description
@@ -36,15 +39,17 @@ Add-Type -AssemblyName System.Drawing
  $textBox2 = New-Object System.Windows.Forms.TextBox;
  $textBox2.Multiline = $true;
  $textBox2.AcceptsReturn = $true;
- $textBox2.Width = 300;
- $textBox2.Height = 120;
+ $textBox2.Width = 320;
+ $textBox2.Height = 150;
  $textBox2.Location = New-Object System.Drawing.Point(20,120);
 
  function RunCurl { 
  $ip = $textBox1.Text;
- $results = Invoke-WebRequest "http://ipinfo.io/$ip";
+ $results = (Invoke-RestMethod http://ipinfo.io/$ip | Out-String).Trim();
+ # $results = ((Invoke-RestMethod http://ipinfo.io/$ip | Out-String) -replace "\s+:","");
+ # $results = Invoke-RestMethod http://ipinfo.io/$ip; 
  # $textBox2.AppendText("$results\r\n");
- $textBox2.Text = $results.ToString() + "\n";
+ $textBox2.Text = "$results `r`n)";
  Write-Host $results;
  $results = $null;
  $ip = $null;
@@ -52,6 +57,12 @@ Add-Type -AssemblyName System.Drawing
  }
  
 $button.Add_Click({RunCurl}) ;
+
+$textBox1.Add_KeyDown({
+    if ($_.KeyCode -eq "Enter") {
+        RunCurl;
+        }
+})
 
 #############Add controls to all the above objects defined
  $form.Controls.Add($button);
